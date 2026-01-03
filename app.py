@@ -178,17 +178,12 @@ if predict_btn:
     res_col1, res_col2, res_col3 = st.columns([1,2,1])
 
     with res_col2:
-        if probability >= 0.60:
+        if probability >= 0.50:
             # RİSKLİ DURUM
             st.error("⚠️ **HIGH RISK**")
             st.metric(label="Churn Probability", value=f"%{probability * 100:.1f}", delta="-Critical",delta_color="inverse")
             st.progress(int(probability * 100))
             st.write("Suggest: This user should be offered a special discount.")
-        elif probability >= 0.40:
-            st.warning("⚖️ **MEDIUM RISK**")
-            st.metric(label="Churn Probability", value=f"%{probability * 100:.1f}", delta="Attention", delta_color="off")
-            st.progress(int(probability * 100))
-            st.info("💡 This user appears to be undecided. Usage habits shoulde be monitored.")
         else:
             # GÜVENLİ DURUM
             st.success("✅ **LOYAL**")
